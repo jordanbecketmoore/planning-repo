@@ -7,7 +7,6 @@ repo:
 	fi
 	@echo "Cloning $(url) into $(dir)..."
 	@git clone $(url) $(dir)
-	@echo "$(dir)" >> .gitignore
 	@echo "	@git clone $(url) $(dir)" >> Makefile
 	@echo "Appended git command to Makefile final target"
 
@@ -19,4 +18,4 @@ backup:
 
 
 hydrate:
-	@echo "Hydrating repositories..."
+	@echo "Hydrating repositories..."	@git clone https://github.com/jordanbecketmoore/planning-repo.git jm/pr

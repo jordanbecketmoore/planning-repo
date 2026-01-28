@@ -11,7 +11,7 @@ This repository stores the configuration for cloning multiple git repositories i
 ## Structure
 
 - **Makefile**: Contains make targets that define which repositories to clone and where
-- **.gitignore**: Lists directories containing cloned repositories (ignored by git)
+- **.gitignore**: Ignores all files/directories except those you want to preserve in your remote backup (Makefile, config files, etc.)
 - **README.md**: This file
 
 ## Make Targets
@@ -32,8 +32,9 @@ make repo url=https://github.com/user/myrepo.git dir=solo/myproject
 
 **What it does:**
 1. Clones the specified git repository into the given directory
-2. Adds the directory to `.gitignore` to keep cloned repos out of version control
-3. Appends the git clone command to the `hydrate` target in the Makefile
+2. Appends the git clone command to the `hydrate` target in the Makefile
+
+Note: All cloned repositories are automatically ignored by the `.gitignore` pattern. You only need to configure `.gitignore` once to preserve files you want to track (like Makefile, config files, etc.).
 
 ### `backup`
 
@@ -65,15 +66,27 @@ make hydrate
 
 ## Workflow
 
-1. **Initial Setup**: Clone repositories into your desired directory structure using `make repo`
+1. **Configure .gitignore**: Set up `.gitignore` with negation patterns to track only the files you want to preserve:
+   ```
+   *
+   !Makefile
+   !README.md
+   !.gitignore
+   !.git/
+   !CLAUDE.md
+   !.justfile
+   !.devcontainer/
+   ```
+
+2. **Initial Setup**: Clone repositories into your desired directory structure using `make repo`
    ```bash
    make repo url=https://github.com/user/repo1.git dir=solo/project1
    make repo url=https://github.com/user/repo2.git dir=jm/tests/project2
    ```
 
-2. **Commit Configuration**: The Makefile now contains all clone commands. Commit it to preserve your directory structure configuration.
+3. **Commit Configuration**: The Makefile and `.gitignore` now control your repository setup. Commit them to preserve your directory structure configuration.
 
-3. **Restore Anytime**: Run `make hydrate` to recreate the entire directory structure on a fresh clone or different machine.
+4. **Restore Anytime**: Run `make hydrate` to recreate the entire directory structure on a fresh clone or different machine.
 
 ## Example Directory Structure
 
