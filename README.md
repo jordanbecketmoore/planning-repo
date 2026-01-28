@@ -35,6 +35,22 @@ make repo url=https://github.com/user/myrepo.git dir=solo/myproject
 2. Adds the directory to `.gitignore` to keep cloned repos out of version control
 3. Appends the git clone command to the `hydrate` target in the Makefile
 
+### `backup`
+
+Commit and push the current Makefile and `.gitignore` configuration to the remote repository.
+
+**Usage:**
+```bash
+make backup
+```
+
+**What it does:**
+1. Stages the Makefile and `.gitignore` files
+2. Creates a commit with a timestamp message (e.g., "Backup: 2026-01-27 14:30:45")
+3. Pushes the commit to the remote repository
+
+This preserves your directory structure configuration in version control, making it easy to share or restore your setup on other machines.
+
 ### `hydrate`
 
 Restore all registered repositories by running all the clone commands defined in the Makefile's `hydrate` target.
