@@ -11,4 +11,12 @@ repo:
 	@echo "	@git clone $(url) $(dir)" >> Makefile
 	@echo "Appended git command to Makefile final target"
 
+backup: 
+	@echo "Backing up repositories..."
+	@git add .gitignore Makefile
+	@git commit -m "Backup: $$(date '+%Y-%m-%d %H:%M:%S')"
+	@git push
+
+
 hydrate:
+	@echo "Hydrating repositories..."
