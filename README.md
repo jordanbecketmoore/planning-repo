@@ -2,6 +2,8 @@
 
 A Makefile-based system for managing an arbitrary directory structure of cloned git repositories with the ability to restore them on the fly from this configuration.
 
+Concept Credit: [Jason Poley](https://github.com/jpoley) (https://medium.com/@jbpoley/the-planning-repo-pattern-160ee57adcaf)
+
 ## Purpose
 
 This repository stores the configuration for cloning multiple git repositories into a specific directory structure. Rather than manually tracking each repository location, you define the cloning commands in the Makefile and can recreate the entire directory structure automatically.
